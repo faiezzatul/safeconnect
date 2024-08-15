@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SafeConnect Monitor</title>
+
+	<style>
+		@font-face {
+		  font-family: 'Moderne Sans';
+		  src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/moderne_sans.woff2)
+		}
+		body {
+			margin: 0;
+			padding: 100px 0 0;
+			font-family: 'Montserrat', sans-serif;
+			background-color: #DBD6E4;
+			position: relative;
+  			overflow-y: auto;
+		}
+		h2 {
+			font-size: 30px;
+			color: #59589C;
+		}
+		.upper {
+			height: 200px;
+			width: 100%;
+			position: fixed;
+			top: 0;
+			left: 20%;
+			background-color: #59589C;
+			padding: 40px;
+		}
+		.upper h1{
+			color: white;
+        	text-transform: capitalize;
+			font-size: 30px;
+		}
+
+		/* Style the side navigation */
+		.sidenav {
+  			height: 100%;
+  			width: 20%;
+  			position: fixed;
+  			z-index: 1;
+  			top: 0;
+  			left: 0;
+  			background-color: #827FCF;
+  			overflow-x: hidden;
+		}
+		.nav { margin-top: 50px; }
+		.nav img { margin-left: 30% }
+		.nav p {
+			font-size: 20px;
+			font-weight: 10px;
+			text-align: center;
+			opacity: 70%;
+			margin-top: 0px;
+			margin-bottom: 50px;
+		}
+		.nav a {
+  			color: white;
+  			padding: 17px;
+  			text-decoration: none;
+  			margin-left: 10px;
+  			margin-right: 10px;
+  			display: block;
+		}
+		.nav a:hover {
+  			background-color: #FFC489;
+  			border-radius: 20px;
+  			color: black;
+		}
+		.content {
+  			height: auto;
+			width: 67%;
+			position: fixed;
+			top: 150px;
+			left: 25%;
+			background-color: white;
+			padding: 10px 10px 30px 30px;
+			border: 0px;
+			border-radius: 30px;
+		}
+        
+	table {
+  		border-collapse: collapse;
+  		width: 100%;
+  		margin-top: 30px;
+	}
+	th, td {
+ 		padding: 8px;
+  		text-align: center;
+  		border-bottom: 1px solid #ddd;
+	}
+	th { background-color: #FFC489; }
+	tr:hover { background-color: #dddd; }
+	.btn {
+		border: none;
+		border-radius: 30px;
+		color: white;
+		padding: 10px 20px;
+		text-align: center;
+		font-family: 'Montserrat', sans-serif;
+		font-size: 15px;
+		font-weight: 700;
+		cursor: pointer;
+		background-color:  tomato;
+  	}
+  	.btn:hover { background-color: red; }
+  	
+	.info { 
+		display: flex;
+	}
+	.infoinfo {
+		background-color: #dddd;
+		border-radius: 10px;
+		padding: 10px;
+		width: 30%;
+		margin-left: 100px;
+		cursor: pointer;
+	}
+	ul { 
+		list-style:none;
+		text-align: center;
+		padding: 0px;
+	}
+	li:first-child {
+		font-size: 50px;
+		font-weight: bold;
+		color: #59589C;
+	}
+	</style>
+</head>
+<body>
+	<div class="sidenav">
+		<div class="nav">
+			<img src="img\logo.png">
+			<p>SAFECONNECT MONITOR</p>
+			<a href="dashboard.html">DASHBOARD</a>
+			<a href="device.html">CONNECTED DEVICES</a>
+  			<a href="network.html">NETWORK INFORMATION</a>
+  			<a href="alert.html">ALERT NOTIFICATION</a>
+  			<a href="profile.html">PROFILE</a>
+		</div>
+	</div>
+
+	<div class="main">
+		<div class="upper">
+			<h1>Welcome, Gorgeous!</h1>
+		</div>
+		
+<div class="content">
+    <h2>DASHBOARD</h2>
+<div class="info">
+	<div class="infoinfo" onclick="location.href='device.html'">
+		<ul>
+			<li>5</li>
+			<li>Connected Devices</li>
+		</ul>
+	</div>
+	<div class="infoinfo" onclick="location.href='alert.html'">
+		<ul>
+			<li>3</li>
+			<li>Issues</li>
+		</ul>
+	</div>
+</div>
+</div>
+	</div>
+
+</body>
+</html>

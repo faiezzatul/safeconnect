@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SafeConnect Monitor</title>
+
+	<style>
+		@font-face {
+		  font-family: 'Moderne Sans';
+		  src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/moderne_sans.woff2)
+		}
+		body {
+			margin: 0;
+			padding: 100px 0 0;
+			font-family: 'Montserrat', sans-serif;
+			background-color: #DBD6E4;
+			position: relative;
+  			overflow-y: auto;
+		}
+		h2 {
+			font-size: 30px;
+			color: #59589C;
+		}
+		.upper {
+			height: 200px;
+			width: 100%;
+			position: fixed;
+			top: 0;
+			left: 20%;
+			background-color: #59589C;
+			padding: 40px;
+		}
+		.upper h1{
+			color: white;
+        	text-transform: capitalize;
+			font-size: 30px;
+		}
+
+		/* Style the side navigation */
+		.sidenav {
+  			height: 100%;
+  			width: 20%;
+  			position: fixed;
+  			z-index: 1;
+  			top: 0;
+  			left: 0;
+  			background-color: #827FCF;
+  			overflow-x: hidden;
+		}
+		.nav { margin-top: 50px; }
+		.nav img { margin-left: 30% }
+		.nav p {
+			font-size: 20px;
+			font-weight: 10px;
+			text-align: center;
+			opacity: 70%;
+			margin-top: 0px;
+			margin-bottom: 50px;
+		}
+		.nav a {
+  			color: white;
+  			padding: 17px;
+  			text-decoration: none;
+  			margin-left: 10px;
+  			margin-right: 10px;
+  			display: block;
+		}
+		.nav a:hover {
+  			background-color: #FFC489;
+  			border-radius: 20px;
+  			color: black;
+		}
+		.content {
+  			height: auto;
+			width: 67%;
+			position: fixed;
+			top: 150px;
+			left: 25%;
+			background-color: white;
+			padding: 10px 10px 30px 30px;
+			border: 0px;
+			border-radius: 30px;
+		}
+        
+	table {
+  		border-collapse: collapse;
+  		width: 100%;
+  		margin-top: 30px;
+	}
+	th, td {
+ 		padding: 8px;
+  		text-align: center;
+  		border-bottom: 1px solid #ddd;
+	}
+	th { background-color: #FFC489; }
+	tr:hover { background-color: #dddd; }
+	.btn {
+		border: none;
+		border-radius: 30px;
+		color: white;
+		padding: 10px 20px;
+		text-align: center;
+		font-family: 'Montserrat', sans-serif;
+		font-size: 15px;
+		font-weight: 700;
+		cursor: pointer;
+		background-color:  tomato;
+  	}
+  	.btn:hover { background-color: red; }
+	h2 {
+		display: flex;
+  		justify-content: space-between;
+  		align-items: center;
+	}
+	h2 img {
+  		width: 50px;
+  		cursor: pointer;
+  		transition: filter 0.2s ease-in-out;
+	}
+	h2 img:hover {
+  		filter: brightness(1.3);
+	}
+  th, td {
+        text-align: left;
+  }
+  .alert p { color: red; }
+	</style>
+</head>
+<body>
+	<div class="sidenav">
+		<div class="nav">
+			<img src="public/img/logo.png">
+			<p>SAFECONNECT MONITOR</p>
+			<a href="dashboard.html">DASHBOARD</a>
+			<a href="device.html">CONNECTED DEVICES</a>
+  			<a href="network.html">NETWORK INFORMATION</a>
+  			<a href="alert.html">ALERT NOTIFICATION</a>
+  			<a href="profile.html">PROFILE</a>
+		</div>
+	</div>
+
+	<div class="main">
+		<div class="upper">
+			<h1>Welcome, Gorgeous!</h1>
+		</div>
+		
+<div class="content">
+    <h2>NETWORK INFORMATION
+    <img src="img\add.png" alt="Add new network" title="Add new network" onclick="add()">
+    </h2>
+<table>
+  <tr>
+    <th>Gorgeous@UnifiTM</th>
+    <th style="text-align:right;">
+      <form action="network.html" method="post" name="deleteN" onsubmit="return terminate()">
+        <button class="btn" type="submit">Terminate</button>
+      </form>
+    </th>
+  </tr>
+  <tr>
+    <td>IP Address:</td>
+    <td>192.168.0.1</td>
+  </tr>
+  <tr>
+    <td>MAC Address:</td>
+    <td>fe80::ab03:b96e:7c5b:6eaa</td>
+  </tr>
+  <tr>
+    <td>Type:</td>
+    <td>Public</td>
+  </tr>
+  <tr>
+    <td>Speed:</td>
+    <td>1000Mbps</td>
+  </tr>
+</table>
+</div>
+	</div>
+
+</body>
+<script>
+function add() {
+  const result = window.confirm("You need to terminate the current monitoring session to add the new network.");
+    return false;
+}
+function terminate() {
+  const result = window.confirm("Are you sure you want to terminate the current monitoring session?");
+  if (result) {
+    document.getElementById(`delete-form-${networkId}`).submit();
+  } else {
+    return false;
+  }
+}
+</script>
+</html>

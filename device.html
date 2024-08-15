@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SafeConnect Monitor</title>
+
+	<style>
+		@font-face {
+		  font-family: 'Moderne Sans';
+		  src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/moderne_sans.woff2)
+		}
+		body {
+			margin: 0;
+			padding: 100px 0 0;
+			font-family: 'Montserrat', sans-serif;
+			background-color: #DBD6E4;
+			position: relative;
+  			overflow-y: auto;
+		}
+		h2 {
+			font-size: 30px;
+			color: #59589C;
+		}
+		.upper {
+			height: 200px;
+			width: 100%;
+			position: fixed;
+			top: 0;
+			left: 20%;
+			background-color: #59589C;
+			padding: 40px;
+		}
+		.upper h1{
+			color: white;
+        	text-transform: capitalize;
+			font-size: 30px;
+		}
+
+		/* Style the side navigation */
+		.sidenav {
+  			height: 100%;
+  			width: 20%;
+  			position: fixed;
+  			z-index: 1;
+  			top: 0;
+  			left: 0;
+  			background-color: #827FCF;
+  			overflow-x: hidden;
+		}
+		.nav { margin-top: 50px; }
+		.nav img { margin-left: 30% }
+		.nav p {
+			font-size: 20px;
+			font-weight: 10px;
+			text-align: center;
+			opacity: 70%;
+			margin-top: 0px;
+			margin-bottom: 50px;
+		}
+		.nav a {
+  			color: white;
+  			padding: 17px;
+  			text-decoration: none;
+  			margin-left: 10px;
+  			margin-right: 10px;
+  			display: block;
+		}
+		.nav a:hover {
+  			background-color: #FFC489;
+  			border-radius: 20px;
+  			color: black;
+		}
+		.content {
+  			height: auto;
+			width: 67%;
+			position: fixed;
+			top: 150px;
+			left: 25%;
+			background-color: white;
+			padding: 10px 10px 30px 30px;
+			border: 0px;
+			border-radius: 30px;
+		}
+        
+	table {
+  		border-collapse: collapse;
+  		width: 100%;
+  		margin-top: 30px;
+	}
+	th, td {
+ 		padding: 8px;
+  		text-align: center;
+  		border-bottom: 1px solid #ddd;
+	}
+	th { background-color: #FFC489; }
+	tr:hover { background-color: #dddd; }
+	.btn {
+		border: none;
+		border-radius: 30px;
+		color: white;
+		padding: 10px 20px;
+		text-align: center;
+		font-family: 'Montserrat', sans-serif;
+		font-size: 15px;
+		font-weight: 700;
+		cursor: pointer;
+		background-color:  tomato;
+  	}
+  	.btn:hover { background-color: red; }
+	.content { overflow-y: auto;}
+	.info { 
+		display: flex;
+	}
+	.infoinfo {
+		background-color: #dddd;
+		border-radius: 10px;
+		padding: 10px;
+		width: 30%;
+		margin-left: 100px;
+	}
+	ul { 
+		list-style:none;
+		text-align: center;
+		padding: 0px;
+	}
+	li:first-child {
+		font-size: 50px;
+		font-weight: bold;
+		color: #59589C;
+	}
+	#networkI {
+		font-family: 'Montserrat', sans-serif;
+		font-size: 15px;
+		padding: 5px;
+   		border: 3px solid #555;
+   		border-radius: 20px;
+   		border-color: #dddd;
+	}
+	.btnn {
+		border: none;
+		border-radius: 20px;
+		color: white;
+		padding: 10px;
+		text-align: center;
+		font-family: 'Montserrat', sans-serif;
+		font-size: 15px;
+		cursor: pointer;
+		background-color:  grey;
+  	}
+  	.btnn:hover { 
+		background-color: white; 
+		color: grey;
+	}
+	.alert p { color: red; }
+	</style>
+</head>
+<body>
+	<div class="sidenav">
+		<div class="nav">
+			<img src="img/logo.png">
+			<p>SAFECONNECT MONITOR</p>
+			<a href="dashboard.html">DASHBOARD</a>
+			<a href="device.html">CONNECTED DEVICES</a>
+  			<a href="network.html">NETWORK INFORMATION</a>
+  			<a href="alert.html">ALERT NOTIFICATION</a>
+  			<a href="profile.html">PROFILE</a>
+		</div>
+	</div>
+
+	<div class="main">
+		<div class="upper">
+			<h1>Welcome, Gorgeous!</h1>
+		</div>
+		<div class="content">
+    <h2>DEVICES</h2>
+<table id="table">
+  <tr>
+    <th></th>
+    <th>Device Name</th>
+    <th>IP Address</th>
+    <th>Connected Since</th>
+    <th>Status</th>
+    <th></th>
+  </tr>
+  <tr>
+    <td></td>
+    <td>SAMSUNG A51</td>
+    <td>192.168.0.114</td>
+    <td>02-01-2024</td>
+    <td>Online</td>
+    <td>
+		<form action="device.html" method="post" name="deleteD" onsubmit="return terminate()">
+			<button class="btn" type="submit">Disconnect</button>
+		</form>
+	</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>fairuz iPhone</td>
+    <td>192.168.0.104</td>
+    <td>02-01-2024</td>
+    <td>Online</td>
+    <td>
+		<form action="device.html" method="post" name="deleteD" onsubmit="return terminate()">
+			<button class="btn" type="submit">Disconnect</button>
+		</form>
+	</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Xiomi Tab Pro</td>
+    <td>192.168.0.121</td>
+    <td>03-01-2024</td>
+    <td>Online</td>
+    <td>
+		<form action="device.html" method="post" name="deleteD" onsubmit="return terminate()">
+			<button class="btn" type="submit">Disconnect</button>
+		</form>
+	</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>DELL Inspiron 15</td>
+    <td>192.168.0.109</td>
+    <td>04-01-2024</td>
+    <td>Online</td>
+    <td>
+		<form action="device.html method="post" name="deleteD" onsubmit="return terminate()">
+			<button class="btn" type="submit">Disconnect</button>
+		</form>
+	</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>SONY Smart TV</td>
+    <td>192.168.0.102</td>
+    <td>05-01-2024</td>
+    <td>Online</td>
+    <td>
+		<form action="device.html" method="post" name="deleteD" onsubmit="return terminate()">
+			<button class="btn" type="submit">Disconnect</button>
+		</form>
+	</td>
+  </tr>
+</table>
+</div>
+	</div>
+
+</body>
+<script>
+	
+function terminate() {
+  const result = window.confirm("Are you sure you want to disconnect this device?");
+  if (result) {
+    document.getElementByTd(`deleteD${deviceId}`).submit();
+  } else {
+    return false;
+  }
+}
+
+</script>
+</html>

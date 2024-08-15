@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>SafeConnect Monitor</title>
+
+	<style type="text/css">
+		@font-face {
+		  font-family: 'Moderne Sans';
+		  src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/moderne_sans.woff2)
+		}
+		body {
+			margin: 0;
+			padding-top: 100px;
+			font-family: 'Montserrat', sans-serif;
+			background-color: #59589C;
+			background-size: cover;
+			position: relative;
+		}
+		header {
+			position: absolute;
+			color: white;
+			padding: 20px;
+			display: flex;
+			justify-content: space-between;
+		}
+		header img {
+			width: 50px;
+			height: 50px;
+			text-align: left;
+			margin-left: 30px;
+		}
+		h1 {
+			font-size: 20px;
+			color: #E7AC74;
+			letter-spacing: 2px;
+			margin-top: 0px;
+			line-height: 50px;
+		}
+		header h1 img {
+			vertical-align: middle;
+		}
+		.banner {
+			display: flex;
+			justify-content: center;
+			color: white;
+			margin-top: 50px;
+		}
+		.pictBanner img {
+			width: 500px;
+		}
+		.formBanner {
+			width: 50%;
+			background-color: #827FCF;
+			border-radius: 20px;
+		}
+		.card {
+			margin: 50px 50px;
+		}
+		.card-header {
+			font-size: 50px;
+            padding-bottom: 10px
+		}
+		.form-control { 
+			display: block;
+			width: 50%;
+			padding: 10px 30px;
+   			font-size: 16px;
+   			border:0px;
+   			border-radius: 10px;
+   			margin:10px 20px;
+   			opacity: 0.7;
+		}
+		.btn {
+			border: none;
+			border-radius: 30px;
+			color: white;
+			padding: 10px 35px;
+			text-align: right;
+			font-family: 'Montserrat', sans-serif;
+			font-size: 15px;
+			font-weight: 700;
+			margin: 10px 20px;
+			transition-duration: 0.4s;
+			cursor: pointer;
+		}
+		.btn-primary {
+			background-image: linear-gradient(to bottom right, #FFDE59, #FF914D); 
+  			color: white; 
+  			border: 2px solid white;
+		}
+		.btn-primary:hover {
+			background-image: linear-gradient(to bottom right, #FFDE59, #FFDE59); 
+  			color: #FF914D; 
+  			border: 2px solid white;
+		}
+		a {
+			margin-left: 20px;
+			color: white;
+		}
+		a:hover {
+			color: #E7AC74;
+		}
+        .invalid-feedback {
+            font-size : 15px;
+            color : tomato;
+            opacity: 0.6;
+        }
+	</style>
+</head>
+<body>
+
+	<header>
+		<h1><img src="img\logo.png">SAFECONNECT</h1>
+	</header>
+	<div class="banner">
+	<div class="pictBanner"><img src="img\laptop.png"></div>
+	<div class="formBanner">
+        <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Register') }}</div>
+
+                <div class="card-body">
+                    <form method="POST" action="{{ route('register') }}" name="register"  onsubmit="return validateForm()">
+                        @csrf
+
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Register') }}
+                                </button>
+                                <a href="{{ route('login') }}">I already have an account.</a>
+                            </div>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+	</div>
+</div>
+</body>
+<script>
+    function validateForm() {
+  		var email = document.forms["register"]["email"].value;
+  		var username = document.forms["register"]["name"].value;
+  		var password = document.forms["register"]["password"].value;
+
+  		if (email == "" || username == "" || password == "") {
+    		alert("All fields must be filled out.");
+    		return false;
+  		}
+
+  		var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+  		if (!emailRegex.test(email)) {
+    		alert("Invalid email address.");
+    		return false;
+  		}
+
+  		var usernameRegex = /^[a-zA-Z0-9_-]{3,16}$/;
+  		if (!usernameRegex.test(username)) {
+    		alert("Username must be 3-16 characters long and can only contain letters, numbers, underscores, and hyphens.");
+    		return false;
+  		}
+
+  		var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+  		if (!passwordRegex.test(password)) {
+    		alert("Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one number.");
+    		return false;
+	  	}
+	}
+</script>
+</html>
